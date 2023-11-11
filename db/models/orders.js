@@ -82,6 +82,17 @@ const getByStatus = async (status) => {
   return orders;
 };
 
+const calcTotalSales = (orders) => {
+  const sales = { total: 0 };
+  orders.forEach((order) => {
+    order.items.forEach((item) => {
+      const subtotal = item.item.price * item.quantity;
+      sales.total += subtotal;
+    });
+  });
+  return sales;
+};
+
 module.exports = {
   getAll,
   getOne,
@@ -89,5 +100,6 @@ module.exports = {
   update,
   remove,
   getByStatus,
+  calcTotalSales,
   Order
 };
